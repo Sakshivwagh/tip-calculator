@@ -1,0 +1,61 @@
+---TIP CALCULATOR PROBLEM
+
+BEGIN
+
+    ---Step 1: Get user inputs
+
+    PRINT "Enter the total bill amount: "
+    INPUT bill_amount
+    IF bill_amount <= 0 THEN
+        PRINT "Error: Bill amount must be a positive number."
+        EXIT
+    ENDIF
+
+    PRINT "Enter the service quality (poor, fair, good, excellent): "
+    INPUT service_quality
+    IF service_quality NOT IN ["poor", "fair", "good", "excellent"] THEN
+        PRINT "Error: Invalid service quality. Choose from poor, fair, good, or excellent."
+        EXIT
+    ENDIF
+
+    PRINT "Enter the number of people splitting the bill: "
+    INPUT num_people
+    IF num_people <= 0 OR num_people IS NOT AN INTEGER THEN
+        PRINT "Error: Number of people must be a positive integer."
+        EXIT
+    ENDIF
+
+    ---Step 2: Determine tip percentage based on service quality
+
+    IF service_quality = "poor" THEN
+        tip_percentage = 10
+    ELSE IF service_quality = "fair" THEN
+        tip_percentage = 15
+    ELSE IF service_quality = "good" THEN
+        tip_percentage = 18
+    ELSE IF service_quality = "excellent" THEN
+        tip_percentage = 20
+    ENDIF
+
+    ----Step 3: Calculate tip amount
+
+    tip_amount = (bill_amount * tip_percentage) / 100
+
+    ---Step 4: Calculate total amount (bill + tip)
+
+    total_amount = bill_amount + tip_amount
+
+    ---Step 5: Calculate amount per person
+
+    amount_per_person = total_amount / num_people
+
+    ---Step 6: Display the results
+
+    PRINT "Bill amount: $", bill_amount
+    PRINT "Service quality: ", service_quality, " (", tip_percentage, "%)"
+    PRINT "Tip amount: $", tip_amount
+    PRINT "Total amount: $", total_amount
+    PRINT "Number of people: ", num_people
+    PRINT "Amount per person: $", amount_per_person
+
+END
